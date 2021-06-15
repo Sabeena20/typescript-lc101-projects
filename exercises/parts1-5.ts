@@ -27,9 +27,9 @@ let daysToMars : number = hoursToMars / 24;
 
 
 // Move your output statement from part 2 here. Update the template literal to call
-console.log(`The ${spacecraftName} took ${getDaysToLocation(kilometersToMars)}to reach the mars.`)
+
 // the function and print the outputs for a Mars trip and a moon trip.
-console.log(`The ${spacecraftName} took ${getDaysToLocation(kilometersToTheMoon)} to reach the moon.`);
+// console.log(`The ${spacecraftName} took ${getDaysToLocation(kilometersToTheMoon)} to reach the moon.`);
 
 
 
@@ -45,14 +45,13 @@ class Spacecraft {
     }
 
 }
-function getDaysToLocation(kilometersAway:number): number{
+function getDaysToLocation(this:any,kilometersAway:number): number{
     let milesAway  = kilometersAway * this.milesPerKilometer;
     let hoursToLocation = milesAway / this.speedMph;
     let daysToLocation = hoursToLocation / 24;
    return daysToLocation;    
    }
-  
-
+   
 
 
 // Create an instance of the class here:
@@ -61,6 +60,7 @@ let spaceShuttle = new Spacecraft("Determination",17500);
 
 // Move your output statements from part 3 here. Update the template literals use the
 // instance of the class.
+console.log(`The ${spaceShuttle.name} took ${spaceShuttle.getDaysToLocation(kilometersToMars)}to reach the mars.`)
 
 
 

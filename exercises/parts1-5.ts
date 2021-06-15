@@ -1,6 +1,6 @@
 // URL for the instructions: 
 // https://education.launchcode.org/intro-to-professional-web-dev/chapters/typescript/exercises.html 
-
+import { SpaceLocation } from './SpaceLocation';
 
 // Part 1: Declare (5) Variables With Type
 // let spacecraftName:string = "Determination";
@@ -12,9 +12,9 @@ let kilometersToTheMoon:number = 384400;
 
 
 // Part 2: Print Days to Mars
-let milesToMars :number = kilometersToMars * milesPerKilometer;
-let hoursToMars :number = milesToMars / speedMph;
-let daysToMars : number = hoursToMars / 24;
+// let milesToMars :number = kilometersToMars * milesPerKilometer;
+// let hoursToMars :number = milesToMars / speedMph;
+// let daysToMars : number = hoursToMars / 24;
 
 
 
@@ -43,14 +43,17 @@ class Spacecraft {
         this.speedMph = speedMph;
         this.milesPerKilometer = 0.621;
     }
-
+     getDaysToLocation(this:any,kilometersAway:number): number{
+        let milesAway  = kilometersAway * this.milesPerKilometer;
+        let hoursToLocation = milesAway / this.speedMph;
+        let daysToLocation = hoursToLocation / 24;
+       return daysToLocation;    
+       }
+       printDaysToLocation(location: SpaceLocation) {
+        console.log(`${this.name} would take ${this.getDaysToLocation(location.kilometersAway)} days to get to ${location.name}.`);
+     }
 }
-function getDaysToLocation(this:any,kilometersAway:number): number{
-    let milesAway  = kilometersAway * this.milesPerKilometer;
-    let hoursToLocation = milesAway / this.speedMph;
-    let daysToLocation = hoursToLocation / 24;
-   return daysToLocation;    
-   }
+
    
 
 
@@ -60,7 +63,8 @@ let spaceShuttle = new Spacecraft("Determination",17500);
 
 // Move your output statements from part 3 here. Update the template literals use the
 // instance of the class.
-console.log(`The ${spaceShuttle.name} took ${spaceShuttle.getDaysToLocation(kilometersToMars)}to reach the mars.`)
+spaceShuttle.printDaysToLocation(new SpaceLocation('Mars', kilometersToMars));
+spaceShuttle.printDaysToLocation(new SpaceLocation('the Moon', kilometersToTheMoon));
 
 
 
